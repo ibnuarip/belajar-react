@@ -1,16 +1,45 @@
-# React + Vite
+# Tic Tac Toe Pro - React Edition
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="./assets/banner.png" alt="Tic Tac Toe Banner" width="100%">
+</p>
 
-Currently, two official plugins are available:
+A premium, high-performance web-based version of the classic Tic-Tac-Toe game. Built with **React 19** and **Vite**, featuring an unbeatable AI and modern design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Smart AI**: Difficulty levels including an unbeatable Hard mode (Minimax Algorithm).
+- **Modern UI**: Clean, glassmorphism design with smooth animations.
+- **Game Effects**: Real-time sound effects and confetti celebrations on win.
+- **Scoreboard**: Session tracking for wins, losses, and draws.
+- **Play History**: Move-by-move history with the ability to jump back in time.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** & **Vite**
+- **Framer Motion** (Animations)
+- **Lucide React** (Icons)
+- **use-sound** & **canvas-confetti**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+1. **Clone & Install**:
+   ```bash
+   git clone https://github.com/ibnuarip/react-tic-tac-toe-app.git
+   cd react-tic-tac-toe-app
+   pnpm install
+   ```
+2. **Run Dev Server**:
+   ```bash
+   pnpm dev
+   ```
+3. **Open Browser**: Navigate to `http://localhost:5173`.
+
+## How to Play
+
+1. Choose a game mode (PvP or vs AI).
+2. Click on empty squares to make your move.
+3. Use the history controls at the bottom to revisit previous states.
+
+---
+Made by ibnuarip
