@@ -133,6 +133,7 @@ export default function App() {
       <Modal 
         isOpen={showModal} 
         winner={winner} 
+        gameMode={gameMode}
         onReset={resetGame} 
         onClose={() => setShowModal(false)} 
       />

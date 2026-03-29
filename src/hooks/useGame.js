@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { calculateWinner, getBestMove } from '../utils/gameLogic';
-import useSound from 'use-sound';
+import { playSfx } from '../utils/audioUtils';
 
 export function useGame() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -10,10 +10,11 @@ export function useGame() {
   const [showModal, setShowModal] = useState(false);
   const [isAiThinking, setIsAiThinking] = useState(false);
 
-  // Sound Effects
-  const [playClick] = useSound('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3', { volume: 0.5 });
-  const [playWin] = useSound('https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3', { volume: 0.5 });
-  const [playDraw] = useSound('https://assets.mixkit.co/active_storage/sfx/2572/2572-preview.mp3', { volume: 0.5 });
+  // Sound Effects (stabilized with useCallback)
+  const playClick = useCallback((player) => playSfx(`click_${player.toLowerCase()}`), []);
+  const playWin = useCallback(() => playSfx('win'), []);
+  const playLose = useCallback(() => playSfx('lose'), []);
+  const playDraw = useCallback(() => playSfx('draw'), []);
 
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
@@ -42,7 +43,13 @@ export function useGame() {
     if (isGameOver) {
       if (winner) {
         setScores(prev => ({ ...prev, [winner]: prev[winner] + 1 }));
-        playWin();
+        // Play Win if it's Player vs Player OR if the winner is 'X' (usually the player)
+        // Play Lose if it's against AI and 'O' wins
+        if (gameMode === 'pvp' || winner === 'X') {
+          playWin();
+        } else {
+          playLose();
+        }
       } else if (isDraw) {
         setScores(prev => ({ ...prev, Draw: prev.Draw + 1 }));
         playDraw();
@@ -55,12 +62,12 @@ export function useGame() {
   const handlePlay = useCallback((i, isAi = false) => {
     if (currentSquares[i] || isGameOver) return;
 
-    if (!isAi) playClick();
+    if (!isAi) playClick(xIsNext ? 'X' : 'O');
 
     const nextSquares = currentSquares.slice();
     nextSquares[i] = xIsNext ? 'X' : 'O';
 
-    if (isAi) playClick();
+    if (isAi) playClick(xIsNext ? 'X' : 'O');
 
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
