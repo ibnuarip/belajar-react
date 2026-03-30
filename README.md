@@ -1,7 +1,7 @@
 # Tic Tac Toe Pro - React Edition
 
 <p align="center">
-  <img src="./assets/banner.png" alt="Tic Tac Toe Banner" width="100%">
+  <img src="./assets/banner.png" alt="Tic Tac Toe Banner" width="800">
 </p>
 
 A premium, high-performance web-based version of the classic Tic-Tac-Toe game. Built with **React 19** and **Vite**, featuring an unbeatable AI and modern design.
